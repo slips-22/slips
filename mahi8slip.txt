@@ -1,0 +1,256 @@
+Slip8.practical
+Adv Java.
+A.
+package costomersearching;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CostomerSearching {
+
+    public static void main(String[] args) {
+        ArrayList<String> customerName = new ArrayList();
+        Scanner input = new Scanner(System.in);
+        customerName.add("Sara");
+        customerName.add("John");
+        customerName.add("Miami");
+        customerName.add("Mart");
+        customerName.add("Alex");
+
+        System.out.println("Customer List: \n" + customerName);
+        System.out.println("Search Customer by letter: ");
+        String letter = input.next()
+        //show the name containg the letter starting as the first letter
+        //Show the name containing the letetr.
+    }
+
+}
+
+
+B.
+clock.java
+
+/<applet code= "clock.class" height="600" width="600"></applet>/
+
+import java.applet.*;  
+
+import java.awt.*;  
+
+import java.util.*;  
+
+import java.text.*;  
+
+  
+
+public class clock extends Applet implements Runnable {  
+
+   Thread t1 = null;  
+
+   int hours = 0, minutes = 0, seconds = 0;
+
+   String time = "";
+
+   
+
+   public void init() {  
+
+      setBackground( Color.green);  
+
+   }  
+
+   public void start() {
+
+      t1 = new Thread( this );
+
+      t1.start();
+
+   } 
+
+   public void run() {
+
+      try {
+
+         while (true) {
+
+            Calendar cal = Calendar.getInstance();  
+
+            hours = cal.get( Calendar.HOUR_OF_DAY );  
+
+            if ( hours > 12 ) hours -= 12;  
+
+            minutes = cal.get( Calendar.MINUTE );  
+
+            seconds = cal.get( Calendar.SECOND );
+
+            
+
+            SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
+
+            Date d = cal.getTime();  
+
+            time = formatter.format( d );
+
+            
+
+            t1.sleep( 1000 ); 
+
+         }  
+
+      }  
+
+      catch (Exception e) { }  
+
+   } 
+
+   public void paint( Graphics g ) {
+
+      g.setColor( Color.blue );  
+
+      g.drawString( time, 50, 50 );  
+
+   }  
+
+}  
+
+run :
+
+javac clock.java
+
+appletviewer clock.java
+
+
+
+Q2.Dot Net 
+A.
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+namespace WindowsFormsApplication1
+{
+  public partial class Form1 : Form
+  {
+    public Form1()
+    {
+      InitializeComponent();
+    }
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      listBox1.Items.Add("Sunday");
+      listBox1.Items.Add("Monday");
+      listBox1.Items.Add("Tuesday");
+      listBox1.Items.Add("Wednesday");
+      listBox1.Items.Add("Thursday");
+      listBox1.Items.Add("Friday");
+      listBox1.Items.Add("Saturday");
+      listBox1.SelectionMode = SelectionMode.MultiSimple;
+    }
+    private void button1_Click(object sender, EventArgs e)
+    {
+      foreach (Object obj in listBox1.SelectedItems )
+      {
+        MessageBox.Show(objToString ());
+      }
+    }
+  }
+}
+
+Q2.Dot Net 
+A.
+PublicClass Form1
+PrivateSub Button1_Click(ByVal sender As System.Object, ByVal e As
+System.EventArgs) Handles Button1.Click
+Dim no AsInteger
+Dim sqr AsDouble
+Dim rm AsInteger
+Dim str1 AsString
+ no = CInt(TextBox1.Text)
+ sqr = Math.Sqrt(no)
+While no
+ rm = no Mod 2
+ str1 = str1 & rm
+ no = no \ 2
+EndWhile
+ MsgBox(sqr &" and"& StrReverse(str1))
+EndSub
+End Class
+
+B.
+/*
+ * C# Program to Perform Matrix Multiplication
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+ 
+namespace matrix_multiplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i, j,m,n;
+            Console.WriteLine("Enter the Number of Rows and Columns : ");
+            m = Convert.ToInt32(Console.ReadLine());
+            n = Convert.ToInt32(Console.ReadLine());
+            int[,] a = new int[m, n];
+            Console.WriteLine("Enter the First Matrix");
+            for (i = 0; i < m; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    a[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("First matrix is:");
+            for (i = 0; i < m; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    Console.Write(a[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            int[,] b = new int[m, n];
+            Console.WriteLine("Enter the Second Matrix");
+            for (i = 0; i < m; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    b[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("Second Matrix is :");
+            for (i = 0; i < 2; i++)
+            {
+                for (j = 0; j < 2; j++)
+                {
+                    Console.Write(b[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Matrix Multiplication is :");
+            int[,] c = new int[m, n];
+            for (i = 0; i < m; i++)
+            {
+                for (j = 0; j < n; j++)
+                {
+                    c[i, j] = 0;
+                    for (int k = 0; k < 2; k++)
+                    {
+                        c[i, j] += a[i, k] * b[k, j];
+                    }
+                }
+            }
+            
+                for (j = 0; j < n; j++)
+                {
+                    Console.Write(c[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+ 
+            Console.ReadKey();
+        }
+    }
+}

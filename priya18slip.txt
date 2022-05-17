@@ -1,0 +1,214 @@
+import java.io.*;
+import java.lang.Thread;
+class TestSleepMethod1 extends Thread{
+public void run(){
+  int i,fact=1;  
+  int number=5;//It is the number to calculate factorial    
+  
+  try {         
+for(i=1;i<=number;i++){   
+ Thread.sleep(1000); 
+      fact=fact*i;    
+}
+ System.out.println("Factorial of "+number+" is: "+fact);    
+  }   
+class SleepDemo{
+ public static void main(String args[]){
+ MyThread t = new MyThread();
+        catch (Exception e) {
+           
+            // catching the exception
+            System.out.println(e);
+        }
+}
+}
+
+
+
+-------
+
+Client side
+
+Import java.io.*;
+Import java.net.*;
+public class Chatclient
+{
+Public static void main(String args[])
+{
+Boolean b = true;
+try
+{
+Socket s1 = new Socket(“localhost”,40);
+DataInputStream in1 = new DataInputStream(s1.getInputStream());
+DataInputStream out1 = new DataInputStream(s1.getOutputStream());
+printStream pw = new printStream(out1);
+System.out.println(“Send Message”);
+While(b)
+{
+DataInputStream in = new DataInputStream(System.in);
+String str1 = in.readLine();
+If(str1.equals(“quit”))
+b=false;
+else
+{
+pw.println(str1);
+String str2 = in1.readLine();
+System.out.println(str2);
+}
+}
+}
+catch(Exception e)
+{
+System.out.println(e);
+}
+}
+
+Server side
+
+Import java.io.*;
+Import java.net.*;
+public class Chatserver
+{
+Public static void main(String args[])
+{
+Boolean b = true;
+try
+{
+ServerSocket s = new ServerSocket(40);
+ServerSocket s1 = s.accept();
+DataInputStream in1 = new DataInputStream(s1.getInputStream());
+DataOutputStream out1 = new DataOutputStream(s1.getOutputStream());
+printStream pw = new printStream(out1);
+while(b)
+{
+String str1 = in1.readLine();
+If(str1.equals(“quit”))
+b =false;
+else
+{
+System.out.println(str1);
+DataInputStream in = new DataInputStream(System.in);
+String str = in.readLine();
+pw.println(str2);
+}
+}
+}catch(Exception e)
+{
+System.out.println(e);
+}
+}
+}
+
+
+
+
+
+
+
+
+vb.1
+Public Class Form1
+ 
+  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+Handles Button1.Click
+   ListBox1.Items.Clear()
+   Dim n As Integer
+   Dim i As Integer
+   n = InputBox("Enter number to create table")
+   For i = 1 To 10
+     ListBox1.Items.Add(i*n)
+   Next
+  End Sub
+ End Class
+/
+Public Class slip4
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim n As Integer
+
+        ListBox1.Items.Clear()
+
+        n = CInt(InputBox("Enter number: "))
+
+        For i = 1 To 10
+
+            ListBox1.Items.Add(n * i)
+
+        Next
+
+    End Sub
+
+End Class
+
+-----
+
+<html>
+<head>
+<Script language=”c#” runat=”Server”>
+void Calculate(Object sender,EventArgs e)
+{
+ if (Store.SelectedIndex > -1){
+ int i = Store.SelectedIndex;
+Cost.Text = “You have chosen “ + Store.SelectedItem.Value + “ and
+its cost is Rs.”;
+ if (i==0) 
+Cost.Text += “30”;
+ else if (i==1)
+ Cost.Text += “32”;
+ else if (i == 2)
+ Cost.Text += “28”;
+ else
+ Cost.Text += “26”;
+ }
+}
+void display(Object sender, EventArgs e)
+{
+ int i = Store.SelectedIndex;
+ if (i==0)
+ {
+ Img.ImageUrl = “Cola.gif”;
+ Img.AlternateText = “Cola”;
+ }
+ else if (i==1)
+ {
+ Img.ImageUrl = “Red_pop.gif”;
+ Img.AlternateText = “Red Pop”;
+ }
+ else if (i == 2)
+ {
+ Img.ImageUrl = “Lime.gif”;
+ Img.AlternateText = “Lime”;
+ }
+ else
+ {
+ Img.ImageUrl = “Purple_Rain.gif”;
+ Img.AlternateText = “Purple Rain”;
+ }
+}
+</Script>
+</head>
+<body>
+ <form runat=”server”>
+<asp:label id = “label1” Text=”Choose one of the items below”
+ Font-Name=”Verdana” Font-Size=”18pt” runat=”server” />
+<br><br>
+<asp:listbox id=”Store” AutoPostBack=”True” width=”200"
+runat=”server” onSelectedIndexChanged=”display”>
+ <asp:listitem>Cola</asp:listitem>
+ <asp:listitem>Red Pop</asp:listitem>
+ <asp:listitem>Lime</asp:listitem>
+ <asp:listitem>Purple Rain</asp:listitem>
+</asp:listbox>
+<asp:Image ID=”Img” ImageUrl=”” AlternateText=”” runat=”server” />
+<br><br>
+<asp:button id=”Find” text=”Find Cost” OnClick=”Calculate”
+runat=”server”/>
+<br><br>
+<asp:textbox id=”Cost” text=”0" width=350 runat=”server”/> 
+</form>
+</body>
+</html>
+
+
+

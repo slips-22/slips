@@ -1,0 +1,178 @@
+package advancejavaprograms;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
+public class Golu {
+ public static void main(String args[]) {
+        
+          Connection c = null;
+        Statement stmt = null;
+             
+        try {
+             Class.forName("com.mysql.cj.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ advancejava","root","Chena@12"); 
+          System.err.println("opened databse successfully");
+          stmt = c.createStatement();
+          String sql =  "create table Emp1 " + "(EId int primary key , EName varchar(20),Salary varchar(20) )";
+          stmt.executeUpdate(sql);
+           System.out.println("table created successfully");
+       PreparedStatement st=c.prepareStatement("insert into Emp1 values(?,?,?)");  
+st.setInt(1,101);
+st.setString(2,"Ratan");  
+st.setString(3,"30000"); 
+  
+int i=st.executeUpdate();  
+System.out.println(i+" records inserted"); 
+        
+          stmt.close();
+          c.close();
+        
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
+        }                
+}
+}
+
+
+******
+Page1.html
+
+<form method='post' action='page1.jsp'>
+<h3>Page 1</h3>
+<h4>Select Your Product:</h4>
+<input type='checkbox' name='prod' value=10>Pencil<br>
+<input type='checkbox' name='prod' value=30>Pen<br>
+<input type='checkbox' name='prod' value=5>Eraser<br>
+<input type='checkbox' name='prod' value=8>Scale<br>
+<input type='checkbox' name='prod' value=45>Note Book<br>
+<input type='submit'><input type='reset'>
+</form>                                                                                                                                              
+
+page1.jsp
+
+<%
+String s[] = request.getParameterValues("prod");
+int tot=0;
+for(int i=0;i<s.length;i++){
+tot+=Integer.parseInt(s[i]);
+}
+session.setAttribute("tot1", tot);
+response.sendRedirect("Page2.html");
+%>
+
+
+Page2.html
+<form method='post' action='page2.jsp'>
+<h3>Page 2</h3>
+<h4>Select Your Product:</h4>
+<input type='checkbox' name='prod' value=1300>Jeans<br>
+<input type='checkbox' name='prod' value=500>Shirt<br>
+<input type='checkbox' name='prod' value=2500>Saree<br>
+<input type='checkbox' name='prod' value=750>Trouser<br>
+<input type='checkbox' name='prod' value=400>T-Shirt<br>
+<input type='submit'><input type='reset'>
+</form>
+
+
+
+
+page2.jsp
+<%
+String s[] = request.getParameterValues("prod");
+int tot=0;
+for(int i=0;i<s.length;i++){
+tot+=Integer.parseInt(s[i]);
+}
+int tot1 = Integer.parseInt(session.getAttribute("tot1").toString());
+%>
+<table border=1>
+<tr><td><b>Page 1:</b></td><td>Rs.<%=tot1%>/-</td></tr>
+<tr><td><b>Page 2:</b></td><td>Rs.<%=tot%>/-</td></tr>
+<tr><td><b>Grand Total:</b></td><td>Rs.<%=tot1+tot%>/-</td></tr>
+</table>
+
+
+*******
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+namespace Program
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int Num1, Num2, result;
+            char option;
+            Console.Write("Enter the First Number : ");
+            Num1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the Second Number : ");
+            Num2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Main Menu");
+            Console.WriteLine("1. Addition");
+            Console.WriteLine("2. Subtraction");
+            Console.WriteLine("3. Multiplication");
+            Console.WriteLine("4. Division");
+            Console.Write("Enter the Operation you want to perform : ");
+            option = Convert.ToChar(Console.ReadLine());
+            switch (option)
+            {
+            case '1':
+                result = Num1 + Num2;
+                Console.WriteLine("The result of Addition is : {0}", result);
+                break;
+            case '2':
+                result = Num1 - Num2;
+                Console.WriteLine("The result of Subtraction is : {0}", result);
+                break;
+            case '3':
+                result = Num1 * Num2;
+                Console.WriteLine("The result of Multiplication is : {0}", result);
+                break;
+            case '4':
+                result = Num1 / Num2;
+                Console.WriteLine("The result of Division is : {0}", result);
+                break;
+            default:
+                Console.WriteLine("Invalid Option");
+                break;
+            }
+            Console.ReadLine();
+        }
+ 
+    }
+}
+
+*******
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+public partial class palindrone : System.Web.UI.Page {
+protected void Page_Load(object sender,EventArgs e)
+{
+}
+protected void Button1_Click(object sender,EventArgs e)
+{
+int num =int.Parse(getnum.Text);
+int n, rev = 0, d;
+n = num;
+while (n > 0)
+{
+d = n % 10;
+n = n / 10;
+rev = rev * 10 + d;
+}
+if (rev == num)
+lblDisplay.Text = lblDisplay.Text + num +"is a palindrone number";
+else
+ lblDisplay.Text = lblDisplay.Text + num +"is not a palindronenumber";
+}
+}

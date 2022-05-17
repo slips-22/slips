@@ -1,0 +1,304 @@
+Q1 15 ,arks .net vowel question
+
+Public Class Form1
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim a As Char
+
+        Dim str As String
+
+        a = TextBox1.Text
+
+
+
+        If (TextBox1.Text.Length <= 1) Then
+
+            If Char.IsUpper(a) Then
+
+                str = "Upper Case"
+
+            Else
+
+                str = "Lower Case"
+
+            End If
+
+            If (a = "a" Or a = "e" Or a = "i" Or a = "o" Or a = "u") Then
+                MessageBox.Show(TextBox1.Text & " is " & str & " Vowel")
+            ElseIf (a = "A" Or a = "E" Or a = "I" Or a = "O" Or a = "U") Then
+                MessageBox.Show(TextBox1.Text & " is " & str & " Vowel")
+            Else
+
+                MessageBox.Show(TextBox1.Text & " is " & str & " Consonant")
+
+            End If
+
+        End If
+    End Sub
+
+    Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
+        Dim a As String
+
+        a = TextBox1.Text
+
+        If (TextBox1.Text.Length > 1) Then
+
+            Label2.Text = "Only One Characters Allowed...!"
+
+        Else
+
+            Label2.Text = ""
+
+        End If
+
+
+
+    End Sub
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+End Class
+________________________________________________________________________________________________________________________________________________________________________
+
+.net Q2
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        decimal principal = Convert.ToDecimal(TextBox1.Text);
+        decimal interest = Convert.ToDecimal(TextBox2.Text);
+        decimal time = Convert.ToDecimal(TextBox3.Text);
+        decimal interestPaid = principal * ( interest * time / 100);
+        decimal totalPI = principal + interestPaid;
+        Label1.Visible = true;
+        Label1.Text = ("<br> Amount = " + principal
+            + "<br> Interest =" + interest + "%"
+            +"<br> Total time = "+ time
+            + "<br> Interest Paid =" + interestPaid 
+            + "<br Total (P+I) > =" + totalPI 
+            );
+    }
+}
+
+
+
+https://www.c-sharpcorner.com/UploadFile/0c1bb2/interest-rate-calculator-using-Asp-Net-C-Sharp/
+pc=website 2
+___________________________________________________________________________________________________________________
+java Q1
+
+<%-- 
+    Document   : Slip7
+    Created on : May 14, 2022, 2:36:27 PM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%! int n,rem,r; %>
+<% n=Integer.parseInt(request.getParameter("num"));
+if(n<10)
+{
+out.println("Sum of first and last digit is ");
+%><font size=18 color=red><%= n %>
+<%
+}
+else
+{
+rem=n%10;
+do
+{
+r=n%10;
+n=n/10;
+}while(n>0);
+n=rem+r;
+out.println("Sum of first and last digit is ");
+%><font size=18 color=red><%= n %>
+<%
+}
+%>
+    </body>
+</html>
+
+
+--html file-----
+
+<html>
+<body>
+<form method=post action="Slip7.jsp">
+Enter Any Number : <Input type=text name=num>
+<input type=submit value=Display>
+</form>
+</body>
+</html>
+
+____________________________________________________________________________________________
+
+java Q2
+
+
+package signal1;
+
+ //<applet code= "signal.class" height="600" width="600"></applet>/
+
+
+import java.applet.*;
+import java.awt.*;
+public class signal extends Applet implements Runnable
+{
+
+    int r,g1,y,i;
+
+    Thread t;
+
+    @Override
+    public void init()
+
+    {
+
+        r=0;g1=0;y=0;
+
+        t=new Thread(this);
+
+        t.start();
+
+    }
+
+    @Override
+    public void run()
+
+    {
+
+        try        { for (i=24;i>=1;i--)
+
+        {
+
+            Thread.sleep(100);
+
+            if (i<16 || i>=24)
+
+            {
+            } else {
+                g1=1;
+
+                repaint();
+            }
+
+            if (i>=8 && i<16)
+
+            {
+
+                y=1;
+
+                repaint();
+
+            }
+
+            if (i>=1 && i<8)
+
+            {
+
+                r=1;
+
+                repaint();
+
+            }
+
+        }
+
+                      if (i==0)
+
+            {
+
+                run();
+
+            }
+
+        }
+
+        catch(InterruptedException e)
+
+        {
+
+        }
+
+    }
+
+    @Override
+    public void paint(Graphics g) {
+
+        g.drawOval(100,100,100,100);
+
+        g.drawOval(100,225,100,100);
+
+        g.drawOval(100,350,100,100);
+
+        g.drawString("start",200,200);
+
+        if (r==1)
+
+        { g.setColor(Color.red);
+
+            g.fillOval(100,100,100,100);
+
+            g.drawOval(100,100,100,100);
+
+            g.drawString("stop",200,200);
+
+            r=0;
+
+        }
+
+        if (g1==1)
+
+        { g.setColor(Color.green);
+
+            g.fillOval(100,225,100,100);
+
+            g1=0;
+
+            g.drawOval(100,225,100,100);
+
+            g.drawString("go",200,200);
+
+        }
+
+        if (y==1)
+
+        { g.setColor(Color.yellow);
+
+            g.fillOval(100,350,100,100);
+
+            y=0;
+
+            g.drawOval(100,350,100,100);
+
+            g.drawString("slow",200,200);
+
+        }
+
+    }
+
+}
+
+

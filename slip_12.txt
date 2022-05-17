@@ -1,0 +1,208 @@
+1 question java
+-------------------------------------------------------------------------------------------------------------------------
+
+package javaapplication1;
+
+/**
+ *
+ * @author Lenovo
+ */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class JavaApplication1 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        //Registering the Driver
+  try{
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ slip12" , "root","rushi@12");
+      System.out.println("Connection established......");
+      //Creating the Statement object
+      Statement stmt = con.createStatement();
+      //Query to get the number of rows in a table
+      String query = "select count(*) from slip12Q1";
+      //Executing the query
+      ResultSet rs = stmt.executeQuery(query);
+      //Retrieving the result
+      rs.next();
+      int count = rs.getInt(1);
+      System.out.println("Number of records in the table: "+count);
+    }catch (Exception e ){
+        JOptionPane.showMessageDialog(null, e);
+    }
+    }
+    
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+2 question java
+
+class MyThread extends Thread{
+
+            public MyThread(String s){
+                        super(s);
+            }
+
+            public void run(){
+                        System.out.println(getName()+" thread created.");
+                        while(true){
+                                    System.out.println(this);
+                                    int s = (int)(Math.random()*5000);
+                                    System.out.println(getName()+" is sleeping for "+s+"msec");
+                                    try{
+                                                Thread.sleep(s);
+                                    }catch(Exception e){}
+                        }
+            }
+}
+
+class ThreadLifeCycle{
+            public static void main(String args[]){
+                        MyThread t1 = new MyThread("archana"),
+                                    t2 = new MyThread("adhira");
+                        t1.start();
+                        t2.start();
+
+                        try{
+                                    t1.join();
+                                    t2.join();
+                        }catch(Exception e){}
+
+                        System.out.println(t1.getName()+" thread dead.");
+                        System.out.println(t2.getName()+" thread dead.");
+            }
+}
+-------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1 question VB.net
+-------------------------------------------------------------------------------------------------------------------------
+<html>
+<head>
+<title> ASP.NET </title>
+</head>
+<form id=f1 runat="server">
+<body>
+<font color="green">
+<span id=s1 runat="server" />
+ </font>
+<br><br>
+<h3>Move The Mouse Over Me</h3>
+<asp:button id="Button2" OnServerClick="Button2_Click" text="Click me too!
+"
+ style="font: 8pt verdana;background-color:lightgreen;border-color:black;height=30;width:100"
+ onmouseover="this.style.backgroundColor='yellow'"
+ onmouseout="this.style.backgroundColor='lightgreen'"
+ runat="server"/>
+
+</form>
+</body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------------------
+
+2 question VB.net
+
+Imports System
+
+Imports System.Data
+
+Imports System.Data.OleDb
+
+ 
+
+Public Class Form1
+
+    Dim con As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Saurabh\Desktop\New folder\player.accdb")
+
+    Dim adpt As New OleDbDataAdapter("Select * from player", con)
+
+    Dim cmd As New OleDbCommand
+
+    Dim ds As New DataSet
+
+    Public Function display()
+
+        adpt.Fill(ds, "player")
+
+        DataGridView1.DataSource = ds
+
+        DataGridView1.DataMember = "player"
+
+        Return ds
+
+    End Function
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        display()
+
+    End Sub
+
+ 
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        cmd.Connection = con
+
+        cmd.CommandType = CommandType.Text
+
+        cmd.CommandText = "insert into player values(" & TextBox1.Text & ",'" & TextBox2.Text & "','" & TextBox3.Text & "'," & TextBox4.Text & ")"
+
+        con.Open()
+
+If cmd.ExecuteNonQuery() Then
+
+            MessageBox.Show("Inserted Successfully...!")
+
+        End If
+
+        con.Close()
+
+        ds.Clear()
+
+        display()
+
+    End Sub
+
+ 
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        cmd.Connection = con
+
+        cmd.CommandType = CommandType.Text
+
+        cmd.CommandText = "UPDATE player SET no_of_matches = " & TextBox4.Text & " WHERE PName = '" & TextBox2.Text & "'"
+
+        con.Open()
+
+        If cmd.ExecuteNonQuery() Then
+
+            MessageBox.Show("Updated Successfully...!")
+
+        End If
+
+        con.Close()
+
+        con.Close()
+
+        ds.Clear()
+
+        display()
+
+    End Sub
+
+
+End Class
+
+-------------------------------------------------------------------------------------------------------------------------
+

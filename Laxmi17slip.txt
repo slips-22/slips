@@ -1,0 +1,345 @@
+import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class main {
+    public static void main(String[] args) {
+        System.out.println("Enter a string: ");
+        Scanner sc = new Scanner(System.in);
+        String str =  sc.next();
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        for(int i =0;i <= str.length() -1 ; i++){
+                            if (str.charAt(i) == 'a' || str.charAt(i) == 'e'
+                                    || str.charAt(i) == 'i'
+                                    || str.charAt(i) == 'o'
+                                    || str.charAt(i) == 'u') {
+                                System.out.print(str.charAt(i));
+                            }
+                        }
+                    }
+                },
+                3000
+        );
+    }
+}
+
+
+
+[6:37 pm, 17/05/2022] Lakshya☠️: SERVER----
+package javaq2slip17;
+import java.net.*;  
+import java.io.*;  
+
+class server {
+	public static void main(String args[])throws Exception{  
+		ServerSocket ss=new ServerSocket(3333);  
+		Socket s=ss.accept();  
+		DataInputStream din=new DataInputStream(s.getInputStream());  
+		DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+		  
+		String str="",str2="";  
+		while(!str.equals("stop")){  
+		str=din.readUTF();
+		try {
+		File fileName = new File("C:/"+str);
+		boolean isexist = fileName.exists();
+		if(isexist) {
+		FileInputStream inFile = new FileInputStream("C:/"+str);
+		int fileLength = (int) fileName.length();
+
+		byte Bytes[] = new byte[fileLength];
+
+		inFile.read(Bytes);
+
+		String file1 = new String(Bytes);
+		//System.out.println("File content is:\n" + file1);
+
+		//close file
+		inFile.close();
+
+		//System.out.println("client says: "+str);  
+		//str2=br.readLine();  
+		dout.writeUTF(file1);  
+		dout.flush();  
+		}else {
+			String ntf = "Not Found";
+			dout.writeUTF(ntf);  
+			dout.flush(); 	
+		}}catch(Exception e) {
+			System.out.println(e);
+		}
+		}  
+		din.close();  
+		s.close();  
+		ss.close();  
+		}}
+[6:38 pm, 17/05/2022] Lakshya☠️: package javaq2slip17;
+import java.net.*;  
+import java.io.*;  
+
+class client {
+	public static void main(String args[])throws Exception{  
+		Socket s=new Socket("localhost",3333);  
+		DataInputStream din=new DataInputStream(s.getInputStream());  
+		DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+		  
+		String str="",str2="";  
+		while(!str.equals("stop")){  
+		str=br.readLine();  
+		dout.writeUTF(str);  
+		dout.flush();  
+		str2=din.readUTF();  
+		System.out.println("file content: "+str2);  
+		}  
+		  
+		dout.close();  
+		s.close();  
+		}
+
+}
+
+
+
+
+
+namespace WinFormsApp21
+
+{
+
+    public partial class Form1 : Form
+
+    {
+
+        public Form1()
+
+        {
+
+            InitializeComponent();
+
+        }
+
+ 
+
+        private void button1_Click(object sender, EventArgs e)
+
+        {
+
+            String str = (textBox1.Text);
+
+            char[] chars = str.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+
+            {
+
+                switch (chars[i])
+
+                {
+
+                    case 'A' or 'a':
+
+                        listBox1.Items.Add(chars[i].ToString());
+
+                        break;
+
+ 
+
+                    case 'E' or 'e':
+
+                        listBox1.Items.Add(chars[i].ToString());
+
+                        break;
+
+ 
+
+                    case 'I' or 'i':
+
+                        listBox1.Items.Add(chars[i].ToString());
+
+                        break;
+
+ 
+
+                    case 'O' or 'o':
+
+                        listBox1.Items.Add(chars[i].ToString());
+
+                        break;
+
+ 
+
+                    case 'U' or 'u':
+
+                        listBox1.Items.Add(chars[i].ToString());
+
+                        break;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+}
+
+Output :
+
+ 
+
+Write a C#.Net application to display the vowels from a given String.
+
+B) Write a VB.NET program to accept the details of product (PID, PName,
+
+expiry_date, price). Store it into the database and display it on data grid view.
+
+Answer :
+
+Imports System
+
+Imports System.Data
+
+Imports System.Data.OleDb
+
+ 
+
+Public Class Form1
+
+    Dim con As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Saurabh\Desktop\New folder\product.accdb")
+
+    Dim adpt As New OleDbDataAdapter("Select * from product", con)
+
+    Dim cmd As New OleDbCommand
+
+    Dim ds As New DataSet
+
+    Public Function display()
+
+        adpt.Fill(ds, "product")
+
+        DataGridView1.DataSource = ds
+
+        DataGridView1.DataMember = "product"
+
+        Return ds
+
+    End Function
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        display()
+
+    End Sub
+
+ 
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+ 
+
+        cmd.Connection = con
+
+        cmd.CommandType = CommandType.Text
+
+        cmd.CommandText = "insert into product values(" & TextBox1.Text & ",'" & TextBox2.Text & "','" & DateTimePicker1.Value & "'," & TextBox4.Text & ")"
+
+        con.Open()
+
+        If cmd.ExecuteNonQuery() Then
+
+            MessageBox.Show("Inserted Successfully...!")
+
+        End If
+
+        con.Close()
+
+        ds.Clear()
+
+        display()
+
+    End Sub
+
+
+End Class
+
+Output :
+
+
+Write a VB.NET program to accept the details of product (PID, PName,  expiry_date, price). Store it into the database and display it on data grid view.
+
+
+ 
+SHARE THIS:     
+tybca slip
+No Comments:
+Post a Comment
+
+PAGES
+jQuery
+R-Studio
+C++
+Web Technology
+NIRALI PRAKASNA BOOK MCQ
+Operating system mcq
+Core Java
+Python
+JavaScript
+Advance Java / Dot Net Framework
+
+ 
+
+ 
+SEARCH THIS BLOG
+POPULAR POSTS
+Savitribai Public University Big Data MCQ | SPPU Big Data MCQ | Big Data
+Savitribai Public University Digital Marketing MCQ | SPPU Digital Marketing MCQ | Management
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Pratical Slip 1 Answers
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Pratical Slip 1 Answers
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Pratical Slip 9 Answers
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Pratical Slip 9 Answers
+Basic R Programming | R Programming Solved Assignment 
+Basic R Programming | R Programming Solved Assignment
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Practical Slip 2 Answers
+Savitribai Phule Pune University T.Y.B.B.A.(C.A.) Core Java Practical Slip 2 Answers
+
+ 
+
+ 
+LABELS
+ASSIGNMENT NO : 2 FUNCTION & OBJECTS
+ASSIGNMENT NO : 3 WORKING WITH FORMS
+ASSIGNMENT NO : 4 STORING & PROTECTING DATA
+ASSIGNMENT NO : 5 MYSQL
+BCA
+BIG DATA
+DATA SCIENCE
+DEPTH INTERVIEW
+DIGITAL MARKETING
+DIGITAL MARKETING MCQ
+E – MAIL MARKETING
+FYBBA(CA)
+FYBBACA
+PHP
+R PROGRAMMING SLIP
+RDBMS
+RSTUDIO
+SLIP1
+SOLVED SLIP
+SYBBA(CA)
+WEB TECHNOLOGY
+WEB TECHNOLOGY SOLVED SLIP
+WRITE A PHP SCRIPT FOR THE FOLLOWING
+
+ 
+Created By SP | Copyright © 2022 All Right Reserved
+sharethis sharing button
+facebook sharing button
+twitter sharing button
+whatsapp sharing button
